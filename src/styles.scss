@@ -1,1 +1,63 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('../node_modules/video.js/dist/video-js.min.css');
+
+/* Colors */
+:root {
+    --alpha: 1;
+    --primary: 235,73%, 53%;
+    --error: 349, 100%, 50%;
+
+    --fs-900: 3rem;
+    --fs-700: 1.5rem;
+    --fs-500: 1.125rem;
+    --fs-400: 1rem;
+}
+
+body {
+    margin: 0;
+    color: white;
+    font-size: var(--fs-500);
+    font-family: sans-serif;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    font-size: inherit;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+input {
+    padding: 0.5em 1.5em;
+    border-radius: 3em;
+    font-size: inherit;
+    color: inherit;
+}
+
+header {
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-primary {
+    background-color: hsl(var(--primary), var(--alpha));
+    text-decoration: none;
+    padding: 0.5em 1.5em;
+    border-radius: 3em;
+    color: white;
+
+    &:hover {
+        text-decoration: none;
+        --alpha: 0.8;
+    }
+}
