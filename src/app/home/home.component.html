@@ -6,8 +6,14 @@
     <p style="font-size: var(--fs-900);">Movies, TV shows, and more</p>
     <p style="font-size: var(--fs-700);">Watch whenever you want wherever you want</p>
     <p>Enter your email to create or restart your subscription.</p>
-    <form action="">
-        <input type="text" placeholder="Email Address">
+    <form (ngSubmit)="register()">
+        <div>
+            <input type="email" placeholder="Email Address" name="email" [(ngModel)]="email" required>
+            @if (error != '')
+                {<p class="error">{{error}}</p>}
+            @else
+                {<p class="success">{{success}}</p>}
+        </div>
         <button class="btn-primary">Sign Up ></button>
     </form>
 </main>

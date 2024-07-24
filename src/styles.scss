@@ -6,6 +6,7 @@
     --alpha: 1;
     --primary: 235,73%, 53%;
     --error: 349, 100%, 50%;
+    --success: 120, 89%, 29%;
 
     --fs-900: 3rem;
     --fs-700: 1.5rem;
@@ -38,6 +39,7 @@ a {
 input {
     padding: 0.5em 1.5em;
     border-radius: 3em;
+    border-style: solid;
     font-size: inherit;
     color: inherit;
 }
@@ -60,4 +62,12 @@ header {
         text-decoration: none;
         --alpha: 0.8;
     }
+}
+
+.error {
+    color: hsl(var(--error));
+}
+
+.success {
+    color: hsl(var(--success));
 }
