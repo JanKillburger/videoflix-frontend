@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,4 +10,9 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
+  activationToken = '';
+
+  constructor(private route: ActivatedRoute) {
+    this.route.params.subscribe(params => this.activationToken = params['activation-token'])
+  }
 }

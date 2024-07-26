@@ -1,23 +1,9 @@
-<header>
-    <img src="../../assets/img/logo.png" alt="Videoflix logo">
-    <a class="btn-primary" routerLink="/login">Log in</a>
-</header>
-<main>
+<app-full-bg-image-container bgImgSrc="../../assets/img/home-bg.jpeg">
     <p style="font-size: var(--fs-900);">Movies, TV shows, and more</p>
     <p style="font-size: var(--fs-700);">Watch whenever you want wherever you want</p>
     <p>Enter your email to create or restart your subscription.</p>
-    <form (ngSubmit)="register()">
-        <div>
-            <input type="email" placeholder="Email Address" name="email" [(ngModel)]="email" required>
-            @if (error != '')
-                {<p class="error">{{error}}</p>}
-            @else
-                {<p class="success">{{success}}</p>}
-        </div>
-        <button class="btn-primary">Sign Up ></button>
+    <form>
+        <input #email type="email" placeholder="Email Address" name="email" required>
+        <a routerLink="signup" class="btn-primary" (onclick)="auth.newUserEmailAddress = email.value">Sign Up</a>
     </form>
-</main>
-<footer>
-    <a routerLink="/privacy">Privacy</a>
-    <a routerLink="/imprint">Imprint</a>
-</footer>
+</app-full-bg-image-container>

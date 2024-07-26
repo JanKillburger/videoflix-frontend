@@ -1,0 +1,13 @@
+<div class="host" [style.background-image]="'url('+bgImgSrc+')'">
+    <header>
+        <img src="../../assets/img/logo.png" alt="Videoflix logo">
+        <a *ngIf="showLoginBtn" class="btn-primary" routerLink="/login">Log in</a>
+    </header>
+    <main>
+        <ng-content></ng-content>
+    </main>
+    <footer>
+        <a routerLink="/privacy">Privacy</a>
+        <a routerLink="/imprint">Imprint</a>
+    </footer>
+</div>

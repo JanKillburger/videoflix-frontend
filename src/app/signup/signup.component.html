@@ -1,1 +1,6 @@
-<p>Activation Token: {{activationToken}}</p>
+<app-full-bg-image-container bgImgSrc="../../assets/img/signup-bg.jpeg">
+    <form>
+        <input #email type="email" placeholder="Email Address" name="email" required>
+        <a routerLink="signup" class="btn-primary" (onclick)="auth.newUserEmailAddress = email.value">Sign Up</a>
+    </form>
+</app-full-bg-image-container>

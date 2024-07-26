@@ -1,13 +1,13 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { environment } from '../../environments/environment';
+import { AuthService } from '../auth.service';
+import { FullBgImageContainerComponent } from '../full-bg-image-container/full-bg-image-container.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, FormsModule],
+  imports: [RouterLink, FormsModule, FullBgImageContainerComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -16,15 +16,7 @@ email = '';
 error = '';
 success = '';
 
-constructor(private http: HttpClient) {}
+constructor(public auth: AuthService) {}
 
-register() {
-  this.error = '';
-  this.http.post(
-    `${environment.apiUrl}/signup/`, {'email': this.email}
-  ).subscribe({
-      next: () => this.success = 'Activation mail sent. Please check.',
-      error: (err) => this.error = err.error.email.join("\n")
-    })
-}
+
 }

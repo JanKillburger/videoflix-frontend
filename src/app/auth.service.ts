@@ -8,6 +8,8 @@ import { environment } from '../environments/environment';
 })
 export class AuthService {
 
+  newUserEmailAddress = '';
+
   constructor(private http: HttpClient) { }
   loginWithUsernameAndPassword(username: string, password: string) {
     const url = environment.apiUrl + 'login/';
