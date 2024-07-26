@@ -15,9 +15,9 @@ import { NgFor, NgIf } from '@angular/common';
   styleUrl: './signup.component.scss'
 })
 export class SignupComponent {
-  constructor(public auth: AuthService, private http: HttpClient) {}
+  constructor(private auth: AuthService, private http: HttpClient) {}
 
-  formData = {email: '', password: '', passwordConfirm: ''};
+  formData = {email: this.auth.newUserEmailAddress, password: '', passwordConfirm: ''};
   formErrors = {email: [], password: [], passwordConfirm: ''};
   success = '';
 

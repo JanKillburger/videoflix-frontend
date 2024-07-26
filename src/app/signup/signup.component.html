@@ -3,7 +3,7 @@
         <h2>Sign Up</h2>
         <div class="form-control">
             <input #email="ngModel" type="email" placeholder="Email Address" name="email" required email
-                [(ngModel)]="formData.email" [value]="auth.newUserEmailAddress" (input)="this.formErrors.email=[]">
+                [(ngModel)]="formData.email" (input)="this.formErrors.email=[]">
             <div class="error">
                 <p *ngFor="let error of formErrors.email">
                     {{error}}
