@@ -2,11 +2,15 @@ form {
     display: flex;
     align-items: start;
     gap: 1em;
+    background-color: transparent;
 }
 
 input {
     width: 250px;
     background-color: transparent;
+    color: white;
+    border-color: white;
+    border-radius: 3em;
 }
 
 ::placeholder {

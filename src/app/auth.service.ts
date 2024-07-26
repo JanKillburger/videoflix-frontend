@@ -8,7 +8,7 @@ import { environment } from '../environments/environment';
 })
 export class AuthService {
 
-  newUserEmailAddress = '';
+  newUserEmailAddress = 'test@user.de';
 
   constructor(private http: HttpClient) { }
   loginWithUsernameAndPassword(username: string, password: string) {

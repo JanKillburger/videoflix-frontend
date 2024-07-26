@@ -1,6 +1,37 @@
 <app-full-bg-image-container bgImgSrc="../../assets/img/signup-bg.jpeg">
-    <form>
-        <input #email type="email" placeholder="Email Address" name="email" required>
-        <a routerLink="signup" class="btn-primary" (onclick)="auth.newUserEmailAddress = email.value">Sign Up</a>
+    <form (ngSubmit)="register()">
+        <h2>Sign Up</h2>
+        <div class="form-control">
+            <input #email="ngModel" type="email" placeholder="Email Address" name="email" required email
+                [(ngModel)]="formData.email" [value]="auth.newUserEmailAddress" (input)="this.formErrors.email=[]">
+            <div class="error">
+                <p *ngFor="let error of formErrors.email">
+                    {{error}}
+                </p>
+                <p *ngIf="email.errors?.['email'] && email.touched">Enter a valid email address.</p>
+                <p *ngIf="email.errors?.['required'] && email.touched">This field is required.</p>
+            </div>
+        </div>
+        <div class="form-control">
+            <input type="password" placeholder="Enter a password" #password="ngModel" [(ngModel)]="formData.password"
+                required name="password" (input)="this.formErrors.password=[]">
+            <div class="error">
+                <p *ngFor="let error of formErrors.password">
+                    {{error}}
+                </p>
+                <p *ngIf="password.errors?.['required'] && password.touched">This field is required.</p>
+            </div>
+        </div>
+        <div class="form-control">
+            <input type="password" placeholder="Confirm password" #password="ngModel" #passwordConfirm="ngModel"
+                [(ngModel)]="formData.passwordConfirm" required name="passwordConfirm">
+            <div *ngIf="passwordConfirm.touched" class="error">
+                <p *ngIf="password.value != passwordConfirm.value">Passwords must match</p>
+                <p *ngIf="passwordConfirm.errors?.['required']">This field is required.</p>
+            </div>
+        </div>
+        <button type="submit" class="btn-primary"
+            [disabled]="email.invalid || password.invalid || passwordConfirm.invalid || password.value != passwordConfirm.value">Get
+            Started</button>
     </form>
 </app-full-bg-image-container>

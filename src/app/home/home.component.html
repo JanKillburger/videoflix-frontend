@@ -3,7 +3,7 @@
     <p style="font-size: var(--fs-700);">Watch whenever you want wherever you want</p>
     <p>Enter your email to create or restart your subscription.</p>
     <form>
-        <input #email type="email" placeholder="Email Address" name="email" required>
-        <a routerLink="signup" class="btn-primary" (onclick)="auth.newUserEmailAddress = email.value">Sign Up</a>
+        <input #email type="email" placeholder="Email Address" name="email" required >
+        <a routerLink="signup" class="btn-primary" (click)="auth.newUserEmailAddress = email.value">Sign Up</a>
     </form>
 </app-full-bg-image-container>
