@@ -6,5 +6,6 @@ import { SignupComponent } from './signup/signup.component';
 export const routes: Routes = [
     {path: '', component: HomeComponent},
     {path: 'login', component: LoginComponent},
+    {path: 'login/:activation-token', component: LoginComponent},
     {path: 'signup', component: SignupComponent},
 ];

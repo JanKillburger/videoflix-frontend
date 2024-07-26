@@ -69,6 +69,10 @@ form {
     text-align: center;
 
     .form-control {
+        text-align: left;
+    }
+
+    .form-control:not(:has(input[type="checkbox"])) {
         margin-block-end: 1em;
 
        > * {
@@ -90,6 +94,10 @@ form {
         text-align: left;
         font-size: var(--fs-400);
     }
+}
+
+input[type="checkbox"] {
+    accent-color: hsl(var(--primary), var(--alpha));
 }
 
 .btn-primary {
@@ -116,4 +124,8 @@ form {
 
 .success {
     color: hsl(var(--success));
+}
+
+.text-link {
+    font-weight: 600;
 }

@@ -1,1 +1,34 @@
-<p>login works!</p>
+<app-full-bg-image-container bgImgSrc="../../assets/img/login-bg.jpeg" [showLoginBtn]="false">
+    <form (ngSubmit)="login()">
+        <h2>Log In</h2>
+        <div class="form-control">
+            <input #email="ngModel" type="email" placeholder="Email Address" name="email" required email
+                [(ngModel)]="formData.email" (input)="this.formErrors.email=[]">
+            <div class="error">
+                <p *ngFor="let error of formErrors.email">
+                    {{error}}
+                </p>
+                <p *ngIf="email.errors?.['email'] && email.touched">Enter a valid email address.</p>
+                <p *ngIf="email.errors?.['required'] && email.touched">This field is required.</p>
+            </div>
+        </div>
+        <div class="form-control">
+            <input type="password" placeholder="Password" #password="ngModel" [(ngModel)]="formData.password" required
+                name="password" (input)="this.formErrors.password=[]">
+            <div class="error">
+                <p *ngFor="let error of formErrors.password">
+                    {{error}}
+                </p>
+                <p *ngIf="password.errors?.['required'] && password.touched">This field is required.</p>
+            </div>
+        </div>
+        <p class="form-control">
+            <input type="checkbox" name="remember-me" #rememberme="ngModel" [(ngModel)]="formData.rememberMe"
+                id="remember-me">
+            <label for="remember-me" style="color: black;">Remember me</label>
+        </p>
+        <button type="submit" class="btn-primary" [disabled]="email.invalid || password.invalid">Log in</button>
+        <p><a class="text-link" routerLink="/forgot-password">Forgot password?</a></p>
+        <p><span style="margin-inline-end: 2em;color:black;">New to videoflix?</span><a class="text-link" routerLink="/signup">Sign Up now!</a></p>
+    </form>
+</app-full-bg-image-container>
