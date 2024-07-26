@@ -14,13 +14,23 @@ import { NgFor, NgIf } from '@angular/common';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  formData = {email: '', password: '', rememberMe: false};
-  formErrors = {email: [], password: []};
+  formData = { email: '', password: '', rememberMe: false };
+  formErrors = { email: [], password: [] };
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {
     this.route.params.subscribe(params => {
-      this.http.put(`${environment.apiUrl}/activate/`, {activationtoken: params['activation-token']}).subscribe(res => alert(JSON.stringify(res)))})
+      if (params['activation-token']) {
+        this.http.put(`${environment.apiUrl}/activate/`, { activationtoken: params['activation-token'] }).subscribe(
+          res => alert(JSON.stringify(res))
+        )
+      }
+    })
   }
 
-  login() {}
+  login() {
+    this.http.post(`${environment.apiUrl}/login/`, this.formData).subscribe({
+      next: (res) => console.log,
+      error: (err) => console.log
+    })
+  }
 }
