@@ -5,6 +5,7 @@ import { SignupComponent } from './signup/signup.component';
 import { VideosComponent } from './videos/videos.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ImprintComponent } from './imprint/imprint.component';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -14,4 +15,5 @@ export const routes: Routes = [
     {path: 'videos', component: VideosComponent},
     {path: 'forgot-password', component: ForgotPasswordComponent},
     {path: 'reset-password/:reset-token', component: ResetPasswordComponent},
+    {path: 'imprint', component: ImprintComponent},
 ];

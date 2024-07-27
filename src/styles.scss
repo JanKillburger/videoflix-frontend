@@ -8,7 +8,7 @@
 /* Colors and font sizes */
 :root {
     --alpha: 1;
-    --primary: 235,73%, 53%;
+    --primary: 235, 73%, 53%;
     --error: 349, 100%, 50%;
     --success: 120, 89%, 29%;
 
@@ -16,6 +16,8 @@
     --fs-700: 1.5rem;
     --fs-500: 1.125rem;
     --fs-400: 1rem;
+
+    --global-padding-inline: 1em;
 }
 
 body {
@@ -23,6 +25,10 @@ body {
     color: white;
     font-size: var(--fs-500);
     font-family: sans-serif;
+}
+
+main {
+    padding-inline: var(--global-padding-inline);
 }
 
 h2 {
@@ -35,6 +41,7 @@ button {
     border: none;
     cursor: pointer;
     font-size: inherit;
+    background-color: transparent;
 }
 
 a {
@@ -75,7 +82,7 @@ form {
     .form-control:not(:has(input[type="checkbox"])) {
         margin-block-end: 1em;
 
-       > * {
+        >* {
             width: 100%;
         }
     }
