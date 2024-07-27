@@ -19,6 +19,9 @@
                 <p *ngFor="let error of formErrors.password">
                     {{error}}
                 </p>
+                <p *ngFor="let error of formErrors.errors">
+                    {{error}}
+                </p>
                 <p *ngIf="password.errors?.['required'] && password.touched">This field is required.</p>
             </div>
         </div>

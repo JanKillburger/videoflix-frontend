@@ -8,13 +8,13 @@ import { environment } from '../environments/environment';
 })
 export class AuthService {
 
-  newUserEmailAddress = 'test@user.de';
+  newUserEmailAddress = '';
 
   constructor(private http: HttpClient) { }
-  loginWithUsernameAndPassword(username: string, password: string) {
-    const url = environment.apiUrl + 'login/';
+  loginWithEmailAndPassword(username: string, password: string) {
+    const url = environment.apiUrl + '/login/';
     const body = {
-      "username": username,
+      "email": username,
       "password": password
     };
     return this.http.post<LoginResponse>(url, body)
@@ -23,14 +23,9 @@ export class AuthService {
       )
   }
 
-  registerUser(data: { username: string, password: string }) {
-    return this.http.post<RegisterResponse>(environment.apiUrl + 'register/', data)
-      .pipe(
-        map(res => {
-          localStorage.setItem("token", res.token);
-          localStorage.setItem("username", res.username);
-        })
-      )
+  registerUser(data: { email: string, password: string }) {
+    return this.http.post<RegisterResponse>(environment.apiUrl + '/signup/', data)
+      
   }
 
   getAuthToken() {
@@ -53,7 +48,7 @@ export class AuthService {
 }
 
 interface RegisterResponse {
-  username: string;
+  email: string;
   token: string;
 }
 

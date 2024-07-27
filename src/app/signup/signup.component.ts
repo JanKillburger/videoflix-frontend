@@ -23,9 +23,7 @@ export class SignupComponent {
 
   register() {
     this.formErrors = {email: [], password: [], passwordConfirm: ''};
-    this.http.post(
-      `${environment.apiUrl}/signup/`, {email: this.formData.email, password: this.formData.password}
-    ).subscribe({
+    this.auth.registerUser(this.formData).subscribe({
         next: () => {
           alert("User account created. Please check your mails for activation link.");
         },
