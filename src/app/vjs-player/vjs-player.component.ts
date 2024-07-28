@@ -7,7 +7,7 @@ import { AuthService } from '../auth.service';
   selector: 'app-vjs-player',
   standalone: true,
   template: `
-    <video #target class="video-js" controls muted playsinline preload="none"></video>
+    <video #target class="video-js" controls playsinline preload="auto"></video>
   `,
   styleUrls: [
     './vjs-player.component.scss'
@@ -21,13 +21,11 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
   // See options: https://videojs.com/guides/options
   @Input({required: true}) options!: {
       fluid: boolean,
-      aspectRatio: string,
-      autoplay: boolean,
+      autoplay: boolean | 'muted' | 'play' | 'any',
       sources: {
-          src: string,
-          type: string,
-      }[],
-      headers?: object
+        src: string,
+        type: string
+      }[]      
   };
 
   player!: Player;
@@ -41,7 +39,7 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
 
   // Instantiate a Video.js player OnInit
   ngOnInit() {
-    this.player = videojs(this.target.nativeElement, {...this.options, headers: {'Authorization': `Token ${this.auth.getAuthToken()}`}}, function onPlayerReady() {
+    this.player = videojs(this.target.nativeElement, this.options, function onPlayerReady() {
       
     });
   }
