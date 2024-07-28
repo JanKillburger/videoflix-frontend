@@ -18,7 +18,9 @@ export class VideosComponent {
     this.video.getVideos().subscribe(res => {
       this.videos = res;
       this.featuredVideo = this.videos.find(v => v.featured) ?? null;
-      console.log(this.featuredVideo?.src)
+    })
+    this.video.getCategories().subscribe(res => {
+      this.categories = res.map(c => c.title);
     })
   }
   featuredVideo: Video | null = null;
