@@ -9,15 +9,22 @@
     </app-vjs-player>
     <div class="overlay">
         <h2>Breakout</h2>
-        <p>In a high-security prison, a wrongly convicted man formulates a meticulous plan to break out and prove his innocence. He must navigate a web of alliances and betrayals to reclaim his freedom and expose the truth.</p>
+        <p>In a high-security prison, a wrongly convicted man formulates a meticulous plan to break out and prove his
+            innocence. He must navigate a web of alliances and betrayals to reclaim his freedom and expose the truth.
+        </p>
         <a class="btn-primary" routerLink="">Play</a>
     </div>
 </div>
 <section *ngFor="let category of categories">
     <h2>{{category}}</h2>
     <ul>
-        <li *ngFor="let video of getVideosByCategory(category)" [title]="video.description">
-            <img [src]="video.poster" [alt]="video.title" width="250px" height="140.625px">
+        <li *ngFor="let video of getVideosByCategory(category)" [title]="video.description" [class.selected]="isSelected(category, video.title)" (mouseleave)="setVideoPreview($event)" (mouseenter)="setVideoPreview($event, video, category)">
+            <app-vjs-player *ngIf="isSelected(category, video.title);else poster"
+                [options]="{fluid: true, autoplay: 'muted', sources: [{src: 'https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8', type: 'application/x-mpegURL'}]}">
+            </app-vjs-player>
+            <ng-template #poster>
+                <img [src]="video.poster" [alt]="video.title" width="250px" height="140.625px">
+            </ng-template>
         </li>
     </ul>
 </section>

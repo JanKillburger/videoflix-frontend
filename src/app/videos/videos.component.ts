@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
 import { VjsPlayerComponent } from '../vjs-player/vjs-player.component';
-import { NgFor } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Video } from '../models';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-videos',
   standalone: true,
-  imports: [VjsPlayerComponent, NgFor, RouterLink],
+  imports: [VjsPlayerComponent, NgFor, RouterLink, NgIf, NgClass],
   templateUrl: './videos.component.html',
   styleUrl: './videos.component.scss'
 })
 export class VideosComponent {
+  selectedVideo = '';
+  selectedCategory = '';
   categories = ["New on Videoflix", "Drama", "Documentary"];
   videos: Video[] = [
     {
@@ -30,5 +32,19 @@ export class VideosComponent {
 
   getVideosByCategory(category: string) {
     return this.videos.filter(v => v.categories.includes(category));
+  }
+
+  isSelected(category: string, video: string) {
+    return category == this.selectedCategory && video == this.selectedVideo;
+  }
+
+  setVideoPreview(ev: Event, video: Video | null = null, category = '') {
+    if (ev.type == 'mouseenter' && video != null) {
+      this.selectedVideo = video.title;
+      this.selectedCategory = category;
+    } else {
+      this.selectedVideo = '';
+      this.selectedCategory = '';
+    }
   }
 }
