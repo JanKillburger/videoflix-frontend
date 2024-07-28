@@ -12,21 +12,25 @@ import { RouterLink } from '@angular/router';
   styleUrl: './videos.component.scss'
 })
 export class VideosComponent {
-  selectedVideo = '';
+  selectedVideo = 0;
   selectedCategory = '';
   categories = ["New on Videoflix", "Drama", "Documentary"];
   videos: Video[] = [
     {
+      id: 1,
       title: "Rhythms of Friendship",
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam officia eligendi facilis nostrum cumque debitis commodi et id a soluta.",
       categories: ["New on Videoflix", "Drama"],
-      poster: "../../assets/img/poster-rhythms-of-friendship.jpeg"
+      poster: "../../assets/img/poster-rhythms-of-friendship.jpeg",
+      src: 'https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8'
     },
     {
+      id: 2,
       title: "Majestic Whales",
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam officia eligendi facilis nostrum cumque debitis commodi et id a soluta.",
       categories: ["New on Videoflix", "Documentary"],
-      poster: "../../assets/img/poster-majestic-whales.jpeg"
+      poster: "../../assets/img/poster-majestic-whales.jpeg",
+      src: 'https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8'
     }
   ];
 
@@ -34,16 +38,16 @@ export class VideosComponent {
     return this.videos.filter(v => v.categories.includes(category));
   }
 
-  isSelected(category: string, video: string) {
-    return category == this.selectedCategory && video == this.selectedVideo;
+  isSelected(category: string, videoId: number) {
+    return category == this.selectedCategory && videoId == this.selectedVideo;
   }
 
   setVideoPreview(ev: Event, video: Video | null = null, category = '') {
     if (ev.type == 'mouseenter' && video != null) {
-      this.selectedVideo = video.title;
+      this.selectedVideo = video.id;
       this.selectedCategory = category;
     } else {
-      this.selectedVideo = '';
+      this.selectedVideo = 0;
       this.selectedCategory = '';
     }
   }

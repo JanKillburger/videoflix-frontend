@@ -4,7 +4,7 @@
 </header>
 <div class="featured-video">
     <app-vjs-player
-        [options]="{fluid: true, autoplay: 'muted', 
+        [options]="{fluid: true, autoplay: false, 
     sources: [{src: 'https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8', type: 'application/x-mpegURL'}]}">
     </app-vjs-player>
     <div class="overlay">
@@ -18,10 +18,17 @@
 <section *ngFor="let category of categories">
     <h2>{{category}}</h2>
     <ul>
-        <li *ngFor="let video of getVideosByCategory(category)" [title]="video.description" [class.selected]="isSelected(category, video.title)" (mouseleave)="setVideoPreview($event)" (mouseenter)="setVideoPreview($event, video, category)">
-            <app-vjs-player *ngIf="isSelected(category, video.title);else poster"
-                [options]="{fluid: true, autoplay: 'muted', sources: [{src: 'https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8', type: 'application/x-mpegURL'}]}">
-            </app-vjs-player>
+        <li *ngFor="let video of getVideosByCategory(category)" [title]="video.title"
+            [class.selected]="isSelected(category, video.id)" (mouseleave)="setVideoPreview($event)"
+            (mouseenter)="setVideoPreview($event, video, category)">
+            <div class="preview-video">
+                <app-vjs-player *ngIf="isSelected(category, video.id);else poster"
+                    [options]="{fluid: true, autoplay: 'muted', sources: [{src: video.src, type: 'application/x-mpegURL'}]}">
+                </app-vjs-player>
+                <div class="preview-overlay" *ngIf="isSelected(category, video.id)">
+                    <a routerLink="" class="btn-primary">Play</a>
+                </div>
+            </div>
             <ng-template #poster>
                 <img [src]="video.poster" [alt]="video.title" width="250px" height="140.625px">
             </ng-template>
