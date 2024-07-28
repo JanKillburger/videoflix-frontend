@@ -2,17 +2,16 @@
     <img src="../../assets/img/logo.png" alt="Videoflix logo">
     <a class="btn-primary" routerLink="/logout">Log out</a>
 </header>
-<div class="featured-video">
+<div class="featured-video" *ngIf="featuredVideo">
     <app-vjs-player
         [options]="{fluid: true, autoplay: false, 
-    sources: [{src: 'https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8', type: 'application/x-mpegURL'}]}">
+    sources: [{src: featuredVideo.src, type: 'application/x-mpegURL'}]}">
     </app-vjs-player>
     <div class="overlay">
-        <h2>Breakout</h2>
-        <p>In a high-security prison, a wrongly convicted man formulates a meticulous plan to break out and prove his
-            innocence. He must navigate a web of alliances and betrayals to reclaim his freedom and expose the truth.
+        <h2>{{featuredVideo.title}}</h2>
+        <p>{{featuredVideo.description}}
         </p>
-        <a class="btn-primary" routerLink="">Play</a>
+        <a class="btn-primary" [routerLink]="'/watch/'+featuredVideo.id">Play</a>
     </div>
 </div>
 <section *ngFor="let category of categories">

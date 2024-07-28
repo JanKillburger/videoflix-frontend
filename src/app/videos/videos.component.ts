@@ -3,6 +3,8 @@ import { VjsPlayerComponent } from '../vjs-player/vjs-player.component';
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Video } from '../models';
 import { RouterLink } from '@angular/router';
+import { VideoService } from '../video.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-videos',
@@ -12,30 +14,21 @@ import { RouterLink } from '@angular/router';
   styleUrl: './videos.component.scss'
 })
 export class VideosComponent {
+  constructor(private video: VideoService) {
+    this.video.getVideos().subscribe(res => {
+      this.videos = res;
+      this.featuredVideo = this.videos.find(v => v.featured) ?? null;
+      console.log(this.featuredVideo?.src)
+    })
+  }
+  featuredVideo: Video | null = null;
   selectedVideo = 0;
   selectedCategory = '';
   categories = ["New on Videoflix", "Drama", "Documentary"];
-  videos: Video[] = [
-    {
-      id: 1,
-      title: "Rhythms of Friendship",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam officia eligendi facilis nostrum cumque debitis commodi et id a soluta.",
-      categories: ["New on Videoflix", "Drama"],
-      poster: "../../assets/img/poster-rhythms-of-friendship.jpeg",
-      src: 'https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8'
-    },
-    {
-      id: 2,
-      title: "Majestic Whales",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam officia eligendi facilis nostrum cumque debitis commodi et id a soluta.",
-      categories: ["New on Videoflix", "Documentary"],
-      poster: "../../assets/img/poster-majestic-whales.jpeg",
-      src: 'https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8'
-    }
-  ];
+  videos: Video[] = []
 
   getVideosByCategory(category: string) {
-    return this.videos.filter(v => v.categories.includes(category));
+    return this.videos.filter(v => v.categories.map(c => c.title).includes(category));
   }
 
   isSelected(category: string, videoId: number) {

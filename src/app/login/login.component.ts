@@ -31,7 +31,7 @@ export class LoginComponent {
   login() {
     this.formErrors = { email: [], password: [], errors: [] };
     this.auth.loginWithEmailAndPassword(this.formData.email, this.formData.password).subscribe({
-      next: () => this.router.navigateByUrl('videos'),
+      next: () => this.router.navigateByUrl('browse'),
       error: (err) => {
         this.formErrors.email = err.error.email;
         this.formErrors.password = err.error.password;
