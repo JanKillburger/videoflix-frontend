@@ -20,4 +20,8 @@ export class VideoService {
     return this.http.get<VideoCategory[]>(`${environment.apiUrl}/categories/`)
   }
 
+  getVideo(id: number) {
+    return this.http.get<Video>(`${environment.apiUrl}/videos/${id}`)
+  }
+
 }

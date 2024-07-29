@@ -1,1 +1,3 @@
-<p>watch works!</p>
+
+<app-vjs-player *ngIf="video" [options]="{fluid: true, autoplay: 'muted', sources: [{src: video.src, type: 'application/x-mpegURL'}]}"></app-vjs-player>
+

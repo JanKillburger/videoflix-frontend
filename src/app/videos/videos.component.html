@@ -10,7 +10,7 @@
         <h2>{{featuredVideo.title}}</h2>
         <p>{{featuredVideo.description}}
         </p>
-        <a class="btn-primary" [routerLink]="'/watch/'+featuredVideo.id">Play</a>
+        <a class="btn-primary" [routerLink]="getVideoLinkSegment()+featuredVideo.id">Play</a>
     </div>
 </div>
 <section *ngFor="let category of categories">
@@ -24,7 +24,7 @@
                     [options]="{fluid: true, autoplay: 'muted', sources: [{src: video.src, type: 'application/x-mpegURL'}]}">
                 </app-vjs-player>
                 <div class="preview-overlay" *ngIf="isSelected(category, video.id)">
-                    <a [routerLink]="'/watch/'+video.id" class="btn-primary">Play</a>
+                    <a [routerLink]="getVideoLinkSegment()+video.id" class="btn-primary">Play</a>
                 </div>
             </div>
             <ng-template #poster>

@@ -26,7 +26,7 @@ export class VideosComponent {
   featuredVideo: Video | null = null;
   selectedVideo = 0;
   selectedCategory = '';
-  categories = ["New on Videoflix", "Drama", "Documentary"];
+  categories: string[] = [];
   videos: Video[] = []
 
   getVideosByCategory(category: string) {
@@ -46,4 +46,10 @@ export class VideosComponent {
       this.selectedCategory = '';
     }
   }
+
+  getVideoLinkSegment() {
+    return window.innerWidth < 980 ? '/details/' : '/watch/'
+  }
 }
+
+
