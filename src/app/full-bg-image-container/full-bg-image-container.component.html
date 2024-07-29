@@ -8,6 +8,6 @@
     </main>
     <footer>
         <a routerLink="/privacy">Privacy</a>
-        <a routerLink="/imprint">Imprint</a>
+        <a routerLink="/imprint" [queryParams]="{back: getBackParam()}">Imprint</a>
     </footer>
 </div>

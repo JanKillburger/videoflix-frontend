@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { VjsPlayerComponent } from '../vjs-player/vjs-player.component';
 import { NgIf } from '@angular/common';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { VideoService } from '../video.service';
 import { Video } from '../models';
 
@@ -14,7 +14,14 @@ import { Video } from '../models';
 })
 export class VideoDetailComponent {
   video: Video | null = null;
-  constructor(private route: ActivatedRoute, private videoService: VideoService) {
+  constructor(
+    private route: ActivatedRoute,
+    private videoService: VideoService,
+    private router: Router
+  ) {
     this.videoService.getVideo(this.route.snapshot.params['id']).subscribe(res => this.video = res)
+  }
+  back() {
+    this.router.navigateByUrl('/browse')
   }
 }

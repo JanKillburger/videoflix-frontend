@@ -1,4 +1,4 @@
-<header>
+<header class="overlay">
     <img src="../../assets/img/logo.png" alt="Videoflix logo">
     <a class="btn-primary" routerLink="/logout">Log out</a>
 </header>
@@ -6,7 +6,7 @@
     <app-vjs-player [options]="{fluid: true, autoplay: false, 
     sources: [{src: featuredVideo.src, type: 'application/x-mpegURL'}]}">
     </app-vjs-player>
-    <div class="overlay">
+    <div class="controls-overlay">
         <h2>{{featuredVideo.title}}</h2>
         <p>{{featuredVideo.description}}
         </p>

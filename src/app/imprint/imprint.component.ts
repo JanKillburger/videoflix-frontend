@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
-import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-imprint',
@@ -10,15 +10,13 @@ import { NavigationEnd, Router, RouterLink } from '@angular/router';
   styleUrl: './imprint.component.scss'
 })
 export class ImprintComponent {
-constructor(private router: Router, private location: Location) {
-  this.router.events.subscribe((ev) => {
-    if (ev instanceof NavigationEnd) {
-      //alert(ev.urlAfterRedirects)
-    }
-  })
-}
+  previousUrl = ''
+  constructor(private location: Location, private router: Router, private route: ActivatedRoute) {
+    this.previousUrl = this.route.snapshot.queryParams['back'] ?? '';
+    console.log(this.previousUrl)
+  }
 
-back() {
-  this.location.back();
-}
+  back() {
+    this.router.navigateByUrl(this.previousUrl);
+  }
 }

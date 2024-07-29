@@ -1,6 +1,6 @@
-import { NgIf } from '@angular/common';
+import { Location, NgIf } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-full-bg-image-container',
@@ -13,7 +13,9 @@ export class FullBgImageContainerComponent {
   @Input() bgImgSrc = '';
   @Input() showLoginBtn = true;
 
-  constructor() {
-    
+  constructor(private router: Router) {}
+  
+  getBackParam() {
+    return this.router.url;
   }
 }

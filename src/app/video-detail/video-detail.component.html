@@ -1,3 +1,8 @@
+<header class="overlay">
+    <img src="../../assets/img/logo.png" alt="Videoflix logo">
+    <button (click)="back()"><img src="../../assets/img/arrow_back.svg"
+            alt="go back"></button>
+</header>
 <div *ngIf="video">
     <app-vjs-player [options]="{fluid: true, autoplay: false, 
     sources: [{src: video.src, type: 'application/x-mpegURL'}]}">
