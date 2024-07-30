@@ -1,0 +1,43 @@
+.wrapper {
+    background-color: hsl(var(--primary));
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 1em 0.7em;
+    border-left: 24px solid hsl(var(--primary));
+    border-radius: 1em;
+    position: fixed;
+    bottom: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.success {
+    border-left-color: hsl(var(--success));
+}
+
+.error {
+    border-left-color: hsl(var(--error));
+}
+
+.hidden {
+    display: none;
+}
+
+p {
+    max-width: 400px;
+    margin: 0;
+}
+
+.vl {
+    background-color: white;
+    width: 1px;
+    align-self: stretch;
+}
+
+button:not(:has(img)) {
+    background-color: white;
+    color: hsl(var(--primary), var(--alpha));
+    font-weight: 600;
+}

@@ -11,3 +11,9 @@ export interface Video {
 export interface VideoCategory {
     title: string
 }
+
+export interface Notification {
+    type: 'error' | 'success' | 'warning' | 'information',
+    cta?: {function: Function, btnText: string},
+    text: string
+}

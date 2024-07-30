@@ -6,11 +6,13 @@ import { FullBgImageContainerComponent } from '../full-bg-image-container/full-b
 import { FormsModule } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
 import { AuthService } from '../auth.service';
+import { NotificationComponent } from '../notification/notification.component';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FullBgImageContainerComponent, FormsModule, NgIf, NgFor, RouterLink],
+  imports: [FullBgImageContainerComponent, FormsModule, NgIf, NgFor, RouterLink, NotificationComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -18,11 +20,11 @@ export class LoginComponent {
   formData = { email: '', password: '', rememberMe: false };
   formErrors = { email: [], password: [], errors: [] };
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private auth: AuthService, private router: Router) {
+  constructor(private route: ActivatedRoute, private http: HttpClient, private auth: AuthService, private router: Router, private notificationService: NotificationService) {
     this.route.params.subscribe(params => {
       if (params['activation-token']) {
         this.http.put(`${environment.apiUrl}/activate/`, { activationtoken: params['activation-token'] }).subscribe(
-          res => alert(JSON.stringify(res))
+          () => this.notificationService.sendNotification({ text: 'User has been activated. Please log in.', type: 'success' })
         )
       }
     })

@@ -1,0 +1,7 @@
+<div [class.hidden]="hidden" [class]="classes">
+    <img src="../../assets/img/ExclamationCircleFill.svg" alt="Attention">
+    <p>{{currentNotification?.text}}</p>
+    <button *ngIf="currentNotification?.cta" (click)="currentNotification?.cta?.function()" class="btn-primary">{{currentNotification?.cta?.btnText}}</button>
+    <span class="vl"></span>
+    <button (click)="close()"><img src="../../assets/img/close_small.png" alt="close"></button>
+</div>
