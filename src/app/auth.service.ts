@@ -23,9 +23,13 @@ export class AuthService {
       )
   }
 
+  logout() {
+    localStorage.removeItem('token');
+  }
+
   registerUser(data: { email: string, password: string }) {
     return this.http.post<RegisterResponse>(environment.apiUrl + '/signup/', data)
-      
+
   }
 
   getAuthToken() {

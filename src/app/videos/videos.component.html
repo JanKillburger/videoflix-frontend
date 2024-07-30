@@ -1,6 +1,6 @@
 <header class="overlay">
     <img src="../../assets/img/logo.png" alt="Videoflix logo">
-    <a class="btn-primary" routerLink="/logout">Log out</a>
+    <a class="btn-primary" routerLink="/login" (click)="auth.logout()">Log out</a>
 </header>
 <div class="featured-video" *ngIf="featuredVideo">
     <app-vjs-player [options]="{fluid: true, autoplay: false, 

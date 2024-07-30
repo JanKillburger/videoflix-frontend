@@ -5,6 +5,7 @@ import { Video } from '../models';
 import { RouterLink } from '@angular/router';
 import { VideoService } from '../video.service';
 import { Observable } from 'rxjs';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-videos',
@@ -14,7 +15,7 @@ import { Observable } from 'rxjs';
   styleUrl: './videos.component.scss'
 })
 export class VideosComponent {
-  constructor(private video: VideoService) {
+  constructor(private video: VideoService, public auth: AuthService) {
     this.video.getVideos().subscribe(res => {
       this.videos = res;
       this.featuredVideo = this.videos.find(v => v.featured) ?? null;
