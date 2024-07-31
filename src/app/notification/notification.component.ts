@@ -36,6 +36,13 @@ export class NotificationComponent implements OnInit, OnDestroy {
     }, 10000);*/
   }
 
+  getNotificationIcn() {
+    if (this.currentNotification?.type == 'error') {
+      return '../../assets/img/ExclamationCircleFill.svg';
+    } else 
+     return ''
+  }
+
   ngOnDestroy(): void {
     this.destroyStream$.next();
   }
