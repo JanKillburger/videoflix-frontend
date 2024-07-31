@@ -1,5 +1,4 @@
 <div [class.hidden]="hidden" [class]="classes">
-    <img [src]="getNotificationIcn()" alt="Attention">
     <p>{{currentNotification?.text}}</p>
     <button *ngIf="currentNotification?.cta" (click)="currentNotification?.cta?.function()" class="btn-primary">{{currentNotification?.cta?.btnText}}</button>
     <span class="vl"></span>

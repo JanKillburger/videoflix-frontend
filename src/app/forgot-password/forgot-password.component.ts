@@ -4,17 +4,19 @@ import { FormsModule, NgModel } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { NotificationComponent } from '../notification/notification.component';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
-  imports: [FullBgImageContainerComponent, FormsModule, NgFor, NgIf],
+  imports: [FullBgImageContainerComponent, FormsModule, NgFor, NgIf, NotificationComponent],
   templateUrl: './forgot-password.component.html',
   styleUrl: './forgot-password.component.scss'
 })
 export class ForgotPasswordComponent {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private notificationService: NotificationService) { }
   @ViewChild('email') email!: NgModel;
   formData = { email: '' };
   formErrors = { email: [] };
@@ -32,8 +34,8 @@ export class ForgotPasswordComponent {
   }
   requestPasswordReset() {
     this.http.post(`${environment.apiUrl}/request-password-reset/`, this.formData).subscribe({
-      next: () => alert('Email with reset link sent. Please check.'),
-      error: () => alert('Something went wrong')
+      next: () => this.notificationService.sendNotification({text: 'Email with reset link sent. Please check.', type: 'success'}),
+      error: () => this.notificationService.sendNotification({text: 'Something went wrong. Please try again.', type: 'error'})
     })
   }
 }
