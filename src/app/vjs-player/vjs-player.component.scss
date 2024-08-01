@@ -1,0 +1,72 @@
+.vjs-control-bar-section {
+    display: flex;
+    height: 3em;
+    position: absolute;
+    bottom: 3em;
+    left: 0;
+    right: 0;
+}
+.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar-section {
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.video-js.vjs-paused.vjs-has-started .vjs-control-bar-section,
+.video-js.vjs-user-active.vjs-has-started .vjs-control-bar-section {
+    opacity: 1;
+    transition: opacity .1s;
+}
+
+.video-js .vjs-control-bar-section {
+    background: rgba(43, 51, 63, .7);
+    color: white;
+}
+
+.video-js .vjs-control-bar {
+    z-index: 2;
+}
+
+.vjs-current-time {
+    display: block !important;
+}
+
+.video-js .vjs-play-progress:before {
+    color: hsl(var(--primary));
+}
+
+.vjs-control-bar .vjs-custom-title {
+    order: 0;
+    flex: auto;
+    cursor: auto;
+    display: flex;
+    
+
+    .vjs-control-text {
+        flex: auto;
+        font-size: var(--fs-400);
+        font-weight: 600;
+    }
+}
+
+.vjs-has-started .vjs-control-bar-section {
+    opacity: 1;
+    transition: visibility .1s, opacity 1s;
+}
+
+.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar-section {
+    visibility: visible;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.vjs-control-bar .vjs-fullscreen-control {
+    order: 3;
+}
+
+.vjs-control-bar .vjs-playback-rate {
+    order: 2;
+}
+
+.vjs-control-bar .vjs-subtitles-button {
+    order: 1
+}
