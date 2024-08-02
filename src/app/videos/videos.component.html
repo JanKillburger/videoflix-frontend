@@ -1,5 +1,6 @@
 <header class="overlay">
-    <img src="../../assets/img/logo.png" alt="Videoflix logo">
+    <img class="bp-medium" src="../../assets/img/logo.png" alt="Videoflix logo">
+    <img class="bp-small" src="../../assets/img/logo-sm.png" alt="Videoflix logo" width="32">
     <a class="btn-primary" routerLink="/login" (click)="auth.logout()">Log out</a>
 </header>
 <div class="featured-video" *ngIf="featuredVideo">
@@ -10,7 +11,7 @@
         type="large-preview"></app-vjs-player>
     <div class="controls-overlay">
         <h2>{{featuredVideo.title}}</h2>
-        <p>{{featuredVideo.description}}
+        <p class="bp-medium">{{featuredVideo.description}}
         </p>
         <a class="btn-primary" [routerLink]="getVideoLinkSegment()+featuredVideo.id">Play</a>
     </div>

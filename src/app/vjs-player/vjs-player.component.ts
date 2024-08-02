@@ -18,7 +18,20 @@ class ControlBarSection extends VjsComponent {
   }
 }
 
+class Header extends VjsComponent {
+  constructor(player: Player, options: any = {}) {
+    super(player, options);
+  }
+
+  override createEl() {
+    return videojs.dom.createEl('span', {
+      className: 'vjs-custom-header'
+    })
+  }
+}
+
 videojs.registerComponent('ControlBarSection', ControlBarSection);
+videojs.registerComponent('Header', Header);
 
 
 @Component({
@@ -67,6 +80,9 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
             className: 'vjs-visible-text vjs-custom-title'
           },
           subtitlesButton: {},
+          fullscreenToggle: {
+            clickHandler: function() { document.querySelector('.wrapper')?.requestFullscreen()}
+          },
           progressControl: false,
           pictureInPictureToggle: false,
           currentTimeDisplay: false,
@@ -80,6 +96,7 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
       this.player.getChild('ControlBarSection')?.addChild('currentTimeDisplay');
       this.player.getChild('ControlBarSection')?.addChild('progressControl');
       this.player.getChild('ControlBarSection')?.addChild('remainingTimeDisplay');
+      this.player.addChild('Header');
     } else {
       this.player = videojs(this.target.nativeElement, { ...this.options, controlBar: { playToggle: false, progressControl: false, currentTimeDisplay: false, remainingTimeDisplay: false, pictureInPictureToggle: false, fullscreenToggle: false } })
     }

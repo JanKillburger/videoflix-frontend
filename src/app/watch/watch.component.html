@@ -1,3 +1,10 @@
-
-<app-vjs-player *ngIf="video" [options]="{sources: [{src: video.src, type: 'application/x-mpegURL'}], fluid: true, autoplay: 'muted'}" [videoTitle]="video.title"></app-vjs-player>
-
+<div class="wrapper" (mousemove)="toggleUserActivity(2250)">
+    <header [class.user-active]="userActive" class="overlay">
+        <a routerLink="/browse"><img src="../../assets/img/arrow_back.svg" alt="go back"></a>
+        <img src="../../assets/img/logo.png" alt="Videoflix logo">
+    </header>
+    <app-vjs-player *ngIf="video"
+        [options]="{sources: [{src: video.src, type: 'application/x-mpegURL'}], fluid: true, autoplay: 'muted'}"
+        [videoTitle]="video.title">
+    </app-vjs-player>
+</div>

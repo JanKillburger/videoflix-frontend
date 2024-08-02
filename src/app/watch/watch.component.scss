@@ -1,0 +1,9 @@
+header {
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+header.user-active {
+    opacity: 1;
+    transition: opacity .1s;
+}

@@ -1,21 +1,32 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { VideoService } from '../video.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Video } from '../models';
 import { VjsPlayerComponent } from '../vjs-player/vjs-player.component';
-import { NgIf } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-watch',
   standalone: true,
-  imports: [VjsPlayerComponent, NgIf],
+  imports: [VjsPlayerComponent, NgIf, RouterLink, NgClass],
   templateUrl: './watch.component.html',
   styleUrl: './watch.component.scss'
 })
-export class WatchComponent {
+export class WatchComponent implements AfterViewInit{
   constructor(private videoService: VideoService, private route: ActivatedRoute) {
     this.videoService.getVideo(this.route.snapshot.params['id']).subscribe(res => this.video = res)
   }
-
+  userActive = true;
   video: Video | null = null;
+
+  ngAfterViewInit() {
+    this.toggleUserActivity(3000);
+  }
+
+  toggleUserActivity(timeout: number) {
+    this.userActive = true;
+    setTimeout(() => {
+      this.userActive = false;
+    }, timeout);
+  }
 }
