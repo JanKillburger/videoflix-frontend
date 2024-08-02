@@ -7,7 +7,7 @@
     <!-- <app-vjs-player [options]="{fluid: true, autoplay: false, 
     sources: [{src: video.src, type: 'application/x-mpegURL'}]}">
     </app-vjs-player> -->
-    <app-vjs-player></app-vjs-player>
+    <app-vjs-player [options]="{sources: [{src: video.src}], autoplay: 'muted', fluid: true}" type="small-preview"></app-vjs-player>
     <div class="overlay">
         <h2>{{video.title}}</h2>
         <p>{{video.description}}

@@ -6,6 +6,8 @@
     left: 0;
     right: 0;
 }
+
+.video-js .vjs-control-bar-section,
 .vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar-section {
     opacity: 0;
     transition: opacity 1s;

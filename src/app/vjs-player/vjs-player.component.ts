@@ -36,49 +36,53 @@ videojs.registerComponent('ControlBarSection', ControlBarSection);
 export class VjsPlayerComponent implements OnInit, OnDestroy {
   @ViewChild('target', { static: true }) target!: ElementRef;
   @Input() videoTitle = 'Majestic record player';
+  @Input() type: 'large-preview' | 'small-preview' | 'regular' = 'regular'
+  @Input() options: {
+    sources?: { src: string, type?: string }[],
+    fluid: boolean,
+    autoplay: 'muted' | 'auto' | 'play' | boolean,
+  } = {
+      sources: [{ src: 'http://127.0.0.1/media/videos/1_master.m3u8', type: 'application/x-mpegURL' }],
+      autoplay: 'muted',
+      fluid: true
+    }
   player!: Player;
 
-  constructor(
-    private elementRef: ElementRef,
-    private auth: AuthService
-  ) {
+  constructor() {
 
   }
 
   // Instantiate a Video.js player OnInit
   ngOnInit() {
-    this.player = videojs(this.target.nativeElement, {
-      sources: [{ src: 'http://127.0.0.1/media/videos/1_master.m3u8', type: 'application/x-mpegURL' }],
-      fluid: true,
-      autoplay: 'muted',
-      controlBar: {
-        
-        skipButtons: {
-          backward: 10,
-          forward: 10
+    if (this.type === 'regular') {
+      this.player = videojs(this.target.nativeElement, {
+        ...this.options,
+        controlBar: {
+          skipButtons: {
+            backward: 10,
+            forward: 10
+          },
+          button: {
+            controlText: this.videoTitle,
+            className: 'vjs-visible-text vjs-custom-title'
+          },
+          subtitlesButton: {},
+          progressControl: false,
+          pictureInPictureToggle: false,
+          currentTimeDisplay: false,
+          remainingTimeDisplay: false
         },
-        volumePanel: {},
-        
-        button: {
-          controlText: this.videoTitle,
-          className: 'vjs-visible-text vjs-custom-title'
-        },
-        subtitlesButton: {},
-        fullscreenControl: {},
-        progressControl: false,
-        pictureInPictureToggle: false,
-        currentTimeDisplay: false,
-        remainingTimeDisplay: false,
-        playToggle: {}
-      },
-      playbackRates: [1, 1.5, 2],
-      controlBarSection: {}
-    }, function onPlayerReady() {
-      
-    });
-    this.player.getChild('ControlBarSection')?.addChild('currentTimeDisplay');
-    this.player.getChild('ControlBarSection')?.addChild('progressControl');
-    this.player.getChild('ControlBarSection')?.addChild('remainingTimeDisplay');
+        playbackRates: [1, 1.5, 2],
+        controlBarSection: {}
+      }, function onPlayerReady() {
+
+      });
+      this.player.getChild('ControlBarSection')?.addChild('currentTimeDisplay');
+      this.player.getChild('ControlBarSection')?.addChild('progressControl');
+      this.player.getChild('ControlBarSection')?.addChild('remainingTimeDisplay');
+    } else {
+      this.player = videojs(this.target.nativeElement, { ...this.options, controlBar: { playToggle: false, progressControl: false, currentTimeDisplay: false, remainingTimeDisplay: false, pictureInPictureToggle: false, fullscreenToggle: false } })
+    }
   }
   // Dispose the player OnDestroy
   ngOnDestroy() {
@@ -87,5 +91,3 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
     }
   }
 }
-
-/*[options]="{controlBar: {skipButtons: {backward: }}, fluid: true, autoplay: 'muted', sources: [{src: video.src, type: 'application/x-mpegURL'}]}"*/

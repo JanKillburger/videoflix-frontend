@@ -6,7 +6,8 @@
     <!-- <app-vjs-player [options]="{fluid: true, autoplay: false, 
     sources: [{src: featuredVideo.src, type: 'application/x-mpegURL'}]}">
     </app-vjs-player> -->
-    <app-vjs-player></app-vjs-player>
+    <app-vjs-player [options]="{sources:[{src: featuredVideo.src}], autoplay: 'muted', fluid: true}"
+        type="large-preview"></app-vjs-player>
     <div class="controls-overlay">
         <h2>{{featuredVideo.title}}</h2>
         <p>{{featuredVideo.description}}
@@ -21,10 +22,9 @@
             [class.selected]="isSelected(category, video.id)" (mouseleave)="setVideoPreview($event)"
             (mouseenter)="setVideoPreview($event, video, category)">
             <div class="preview-video">
-                <!-- <app-vjs-player *ngIf="isSelected(category, video.id);else poster"
-                    [options]="{fluid: true, autoplay: 'muted', sources: [{src: video.src, type: 'application/x-mpegURL'}]}">
-                </app-vjs-player> -->
-                <app-vjs-player></app-vjs-player>
+                <app-vjs-player *ngIf="isSelected(category, video.id);else poster"
+                    [options]="{sources:[{src: video.src}], autoplay: 'muted', fluid: true}"
+                    type="small-preview"></app-vjs-player>
                 <div class="preview-overlay" *ngIf="isSelected(category, video.id)">
                     <a [routerLink]="getVideoLinkSegment()+video.id" class="btn-primary">Play</a>
                 </div>
