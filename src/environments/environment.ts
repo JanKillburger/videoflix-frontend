@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: "videoflix.jan-killburger.de"
+    apiUrl: 'https://jan-killburger.developerakademie.org/api'
 };
