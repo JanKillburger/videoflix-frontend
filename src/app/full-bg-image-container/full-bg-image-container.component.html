@@ -8,7 +8,7 @@
         <ng-content></ng-content>
     </main>
     <footer>
-        <a routerLink="/privacy">Privacy</a>
+        <a routerLink="/imprint" [queryParams]="{back: getBackParam()}" fragment="privacy">Data Privacy</a>
         <a routerLink="/imprint" [queryParams]="{back: getBackParam()}">Imprint</a>
     </footer>
 </div>
