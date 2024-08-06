@@ -16,7 +16,7 @@ export class VideoDetailComponent {
   video: Video | null = null;
   constructor(
     private route: ActivatedRoute,
-    private videoService: VideoService,
+    public videoService: VideoService,
     private router: Router
   ) {
     this.videoService.getVideo(this.route.snapshot.params['id']).subscribe(res => this.video = res)

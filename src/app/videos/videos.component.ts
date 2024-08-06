@@ -15,12 +15,12 @@ import { AuthService } from '../auth.service';
   styleUrl: './videos.component.scss'
 })
 export class VideosComponent {
-  constructor(private video: VideoService, public auth: AuthService) {
-    this.video.getVideos().subscribe(res => {
+  constructor(public videoService: VideoService, public auth: AuthService) {
+    this.videoService.getVideos().subscribe(res => {
       this.videos = res;
       this.featuredVideo = this.videos.find(v => v.featured) ?? null;
     })
-    this.video.getCategories().subscribe(res => {
+    this.videoService.getCategories().subscribe(res => {
       this.categories = res.map(c => c.title);
     })
   }

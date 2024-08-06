@@ -4,7 +4,7 @@
         <img src="../../assets/img/logo.png" alt="Videoflix logo">
     </header>
     <app-vjs-player *ngIf="video"
-        [options]="{sources: [{src: video.src, type: 'application/x-mpegURL'}], fluid: true, autoplay: 'muted'}"
+        [options]="{sources: [{src: videoService.videosBaseUrl + video.src, type: 'application/x-mpegURL'}], fluid: true, autoplay: 'muted'}"
         [videoTitle]="video.title">
     </app-vjs-player>
 </div>

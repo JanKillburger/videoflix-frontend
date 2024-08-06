@@ -13,7 +13,7 @@ import { NgClass, NgIf } from '@angular/common';
   styleUrl: './watch.component.scss'
 })
 export class WatchComponent implements AfterViewInit{
-  constructor(private videoService: VideoService, private route: ActivatedRoute) {
+  constructor(public videoService: VideoService, private route: ActivatedRoute) {
     this.videoService.getVideo(this.route.snapshot.params['id']).subscribe(res => this.video = res)
   }
   userActive = true;

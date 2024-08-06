@@ -12,6 +12,8 @@ export class VideoService {
 
   }
 
+  videosBaseUrl = environment.videosBaseUrl
+
   getVideos() {
     return this.http.get<Video[]>(`${environment.apiUrl}/videos/`)
   }
