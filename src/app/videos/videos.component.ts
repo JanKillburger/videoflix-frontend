@@ -6,6 +6,7 @@ import { RouterLink } from '@angular/router';
 import { VideoService } from '../video.service';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-videos',
@@ -24,6 +25,7 @@ export class VideosComponent {
       this.categories = res.map(c => c.title);
     })
   }
+  posterBaseUrl = environment.postersBaseUrl;
   featuredVideo: Video | null = null;
   selectedVideo = 0;
   selectedCategory = '';
