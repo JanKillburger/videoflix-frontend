@@ -28,7 +28,9 @@
                 </div>
             </div>
             <ng-template #poster>
-                <img [src]="posterBaseUrl + video.poster" [alt]="video.title" width="250px" height="140.625px">
+                <a [routerLink]="getVideoLinkSegment()+video.id">
+                    <img [src]="posterBaseUrl + video.poster" [alt]="video.title" width="250px" height="140.625px">
+                </a>
             </ng-template>
         </li>
     </ul>

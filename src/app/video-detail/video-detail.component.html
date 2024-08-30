@@ -1,9 +1,10 @@
 <header class="overlay">
-    <img src="../../assets/img/logo.png" alt="Videoflix logo">
+    <img class="bp-medium" src="../../assets/img/logo.png" alt="Videoflix logo">
+    <img class="bp-small" src="../../assets/img/logo-sm.png" alt="Videoflix logo" width="32">
     <button (click)="back()"><img src="../../assets/img/arrow_back.svg"
             alt="go back"></button>
 </header>
-<div *ngIf="video">
+<main *ngIf="video">
     <app-vjs-player [options]="{sources: [{src: videoService.videosBaseUrl + video.src}], autoplay: 'muted', fluid: true}" type="small-preview"></app-vjs-player>
     <div class="overlay">
         <h2>{{video.title}}</h2>
@@ -11,4 +12,4 @@
         </p>
         <a class="btn-primary" [routerLink]="'/watch/'+video.id">Play</a>
     </div>
-</div>
+</main>

@@ -41,7 +41,7 @@ export class VideosComponent {
   }
 
   setVideoPreview(ev: Event, video: Video | null = null, category = '') {
-    if (ev.type == 'mouseenter' && video != null) {
+    if (ev.type == 'mouseenter' && video != null && window.innerWidth > 500) {
       this.selectedVideo = video.id;
       this.selectedCategory = category;
     } else {
